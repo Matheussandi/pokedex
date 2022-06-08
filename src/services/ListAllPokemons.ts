@@ -2,12 +2,6 @@ import axios from "axios";
 import { PokemonDetail } from "../interfaces/PokemonDetail";
 import { ListOnePokemon } from "./ListOnePokemon";
 
-export interface IPokemonList {
-    id: number;
-    name: string;
-    url: string;
-}
-
 interface IListPokemons {
     count: number;
     next: string | null;
