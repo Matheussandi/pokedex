@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { PokemonDetail } from '../../interfaces/PokemonDetail';
+import { PokemonDetail, PokemonsSpecies } from '../../interfaces/PokemonDetail';
 
-import { Header } from '../../components/Header';
-
-import Typography from '@mui/material/Typography';
 import { Container } from '@mui/material';
 
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { ListOnePokemon } from '../../services/ListOnePokemon'
+
+import { ListAboutPokemon } from '../../services/ListAboutPokemon'
+
 import {
     CardClass,
     ContainerCard,
@@ -20,16 +20,23 @@ import {
     Icon,
     Stats,
     TextStats,
-    Porcentage
+    Porcentage,
+    IconName,
+    NumberPorcentage,
+    Back
 } from './styles';
-
 
 import weightPokemon from '../../images/weightPokemon.svg';
 import heightPokemon from '../../images/heightPokemon.svg';
+import powerPokemon from '../../images/power.svg';
+import back from "../../images/back-arrow.svg";
 
 export function SelectedPokemonDetails() {
     const [selectedPokemonDetails, setSelectedPokemonDetails] = useState<PokemonDetail | undefined>(undefined);
+    const [aboutPokemon, setAboutPokemon] = useState<PokemonsSpecies | undefined>(undefined);
     const { name } = useParams();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!name) return;
@@ -37,11 +44,18 @@ export function SelectedPokemonDetails() {
         ListOnePokemon(name)
             .then((response) => setSelectedPokemonDetails(response))
 
+        ListAboutPokemon(name)
+            .then((response) => setAboutPokemon(response))
+
     }, [name]);
 
     return (
         <>
-            <Header />
+            <Back
+                onClick={() => navigate('/pokemons')}
+            >
+                <img src={back} alt="Back" />
+            </Back>
 
             <ContainerCard
                 className={`${selectedPokemonDetails?.types[0].type.name}`}
@@ -60,7 +74,7 @@ export function SelectedPokemonDetails() {
                         </ImageCard>
 
                         <SubTitle>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, ab! Nulla beatae illum distinctio praesentium odit, libero aliquid fuga tenetur soluta quam id ea numquam consectetur repellat suscipit reiciendis totam!
+                            {aboutPokemon?.flavor_text_entries.find((test) => test.language.name === 'es')?.flavor_text}
                         </SubTitle>
 
                         <Features>
@@ -76,6 +90,9 @@ export function SelectedPokemonDetails() {
                                         selectedPokemonDetails.weight.toString().length,
                                     )}{' '}
                                 kg
+                                <IconName>
+                                    Peso
+                                </IconName>
                             </Icon>
                             <Icon>
                                 <img src={heightPokemon} alt="heightPokemon" />
@@ -89,6 +106,18 @@ export function SelectedPokemonDetails() {
                                         selectedPokemonDetails.height.toString().length
                                     )}{' '}
                                 m
+                                <IconName>
+                                    Altura
+                                </IconName>
+                            </Icon>
+
+                            <Icon style={{ border: 'none'}}>
+                                <img src={powerPokemon} alt="heightPokemon" />
+                                {/* Essa busca não é do poder principal, pois não identifiquei na API */}
+                                {selectedPokemonDetails?.abilities.find(abilities =>abilities.ability)?.ability.name}
+                                <IconName>
+                                    Poder Principal
+                                </IconName>
                             </Icon>
                         </Features>
 
@@ -113,8 +142,20 @@ export function SelectedPokemonDetails() {
                             </TextStats>
                         </Stats>
 
+                        <NumberPorcentage>
+                            {selectedPokemonDetails?.stats.map((type) => 
+                                <TextStats key={type.stat.name}>
+                                    {type.base_stat}
+                                </TextStats>)}
+                        </NumberPorcentage>
+
                         <Porcentage>
-                            {selectedPokemonDetails?.stats.map((type) => <Typography>{type.base_stat}</Typography>)}
+                            {selectedPokemonDetails?.stats.map((type) => 
+                                <progress 
+                                    key={type.stat.name}
+                                    value={type.base_stat} 
+                                    max="100"
+                                ></progress>)}
                         </Porcentage>
                     </Container>
                 </CardClass>

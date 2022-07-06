@@ -8,14 +8,12 @@ import Box from '@mui/material/Box';
 
 import { Cards } from '../../components/Cards';
 import { Header } from '../../components/Header';
+import { Search } from '../../components/Search';
 import { Row } from 'react-awesome-styled-grid';
-import lupa from '../../images/lupa.svg';
 
 import {
     Body,
     Title,
-    Search,
-    Input,
     Label
 } from './styles';
 
@@ -37,17 +35,7 @@ export function Pokedex() {
                     </Row>
 
                     <Row>
-                        <Search>
-                            <Input id="find-pokemon"
-                                type="text"
-                                placeholder="Pesquisar pokemon">
-                            </Input>
-
-                            <button>
-                                <img src={lupa} alt="lupa" />
-                            </button>
-                        </Search>
-
+                        <Search />
                     </Row>
 
                     <Label>
@@ -74,7 +62,9 @@ export function Pokedex() {
                             {pokemons.map((pokemon) => (
                                 <>
                                     <Grid item xs={5} sm={4} md={3} lg={2} >
-                                        <Cards pokemon={pokemon} />
+                                        <Cards 
+                                            pokemon={pokemon} 
+                                        />
                                     </Grid>
                                 </>
                             ))}

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { Row, Col } from 'react-awesome-styled-grid';
 
-import Banner from "../../images/Banner.svg"
+import Banner from "../../images/BannerComplete.svg"
 
 import { Container, Button, SubTitle, Title } from "./styles";
 
@@ -28,7 +28,8 @@ export function Home() {
                         </Button>
                     </Col>
                     <Col md={5}>
-                        <img src={Banner} alt="banner" />
+                        <img 
+                        src={Banner} alt="banner" />
                     </Col>
                 </Row>
             </Container>

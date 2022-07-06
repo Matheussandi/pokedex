@@ -1,13 +1,22 @@
 import { useNavigate } from 'react-router-dom';
 import { PokemonDetail } from '../../interfaces/PokemonDetail';
-import { Canto, Card, Header, ImageCard, Types } from './styles';
+import { Canto, Card, Header, ImageCard, Types, TypesSpan } from './styles';
+
+import { Modal } from '../Modal/index';
+
+/* import Modal from 'react-modal'; */
+import {useState} from 'react';
+
 
 interface IPokedexCard {
     pokemon: PokemonDetail;
 }
 
 export function Cards({ pokemon }: IPokedexCard) {
+    const [openModal, setOpenModal] = useState(false);
+
     const navigate = useNavigate();
+
 
     function handleClick() {
         navigate(`/pokemon/${pokemon.name}`)
@@ -15,15 +24,27 @@ export function Cards({ pokemon }: IPokedexCard) {
 
     return (
         <>
+            <Modal
+                open={openModal}
+                onClose={() => setOpenModal(false)}
+            />
+
             <Card
                 className={`${pokemon.types[0].type.name}`}
                 onClick={() => handleClick()}
+                /* onClick={() => setOpenModal(true)} */
             >
+
                 <Header>
                     {pokemon.name}
 
                     <Types>
-                        {pokemon.types.map((type) => <h4>{type.type.name}</h4>)}
+                        {pokemon.types.map((type) => 
+                        <TypesSpan
+                            key={type.type.name}
+                        >
+                            {type.type.name}
+                        </TypesSpan>)}
                     </Types>
                 </Header>
 

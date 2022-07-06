@@ -45,7 +45,7 @@ export const HeaderCard = styled.div`
     justify-content: center;
     align-items: center;
     font-size: large;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Karla', sans-serif;
     font-weight: 700;
     position: relative;
 
@@ -54,6 +54,8 @@ export const HeaderCard = styled.div`
 
 export const IdCard = styled.div`
     position: absolute;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
     right: 0;
 `
 
@@ -66,7 +68,7 @@ export const ImageCard = styled.div`
 `
 
 export const SubTitle = styled.div`
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-size: 14px;
     text-align: justify;
@@ -94,18 +96,106 @@ export const Features = styled.div`
 `
 
 export const Icon = styled.div`
-    margin: 0 30px
+    padding: 0 30px;
+
+    border-right: 1px solid #E0E0E0;
+`
+
+export const IconName = styled.p`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+
+    font-weight: 400;
+    color: #767676;
 `
 
 export const Stats = styled.div`
     display: inline-block;
     margin: 0 5% 5% 5%;
+
+    @media screen and (max-width: 600px) {
+        font-size: small;
+        
+    }
 `
 export const TextStats = styled.div`
     margin-top: 2px;
+
+    @media screen and (max-width: 600px) {
+        margin-top: 0;
+        font-size: 7.5px;
+    }
+`
+
+export const NumberPorcentage = styled.div`
+    display: flex;
+    flex-direction: column;
+    float: right;
+    margin: -3px 20px 0 20px;
+    
+    @media screen and (max-width: 600px) {
+        float: right;
+        margin: 0;
+        gap: -2px;
+    }
 `
 
 export const Porcentage = styled.div`
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    float: right;
+
+    gap: 7px;
+    
+
+    progress {
+    display: block;
+    width: 10em;
+    height: 0.7em;
+    margin-top: 6px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: none;
+    }
+
+    progress::-webkit-progress-value {
+        border-radius: 10px;
+    }
+    progress::-webkit-progress-bar {
+        background-color: #fff; width: 100%;
+    }
+
+    @media screen and (max-width: 600px) {
+        width: 11em;
+        height: 4em;
+        gap: 0;
+
+        margin-top: -5px;
+    }
+`
+
+export const Back = styled.button`
+    position: absolute;
+    background-color: #FFF;
+    text-align: center;
+    justify-content: center;
+    margin: 1.3rem;
+    cursor: pointer;
+
+    border: none;
+    border-radius: 50%;
+    padding: 0.5rem 0.7rem 0.3rem 0.7rem;
+    font-size: medium;
+
+
+    box-shadow: 0 8px 14px -6px rgba(0, 0, 0, 0.5);
+    transition: 0.4s ease-in-out;
+    &:hover {
+        box-shadow: 0 8px 26px -6px;
+        margin-bottom: 0.4rem;
+    }
 
 `
