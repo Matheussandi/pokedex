@@ -11,18 +11,31 @@ import { Header } from '../../components/Header';
 import { Search } from '../../components/Search';
 import { Row } from 'react-awesome-styled-grid';
 
+import { useNavigate } from 'react-router-dom';
+
 import {
     Body,
     Title,
     Label
 } from './styles';
 
+
 export function Pokedex() {
     const [pokemons, setPokemons] = useState<PokemonDetail[]>([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         ListAllPokemons().then((response) => setPokemons(response.results))
     }, []);
+
+    const getPokemon = async (query: string) => {
+        if (pokemons.map((p) => p.name).includes(query)) {
+            navigate(`/pokemon/${query}`);
+        } else {
+            return null;
+        }
+    }
 
     return (
         <>
@@ -31,11 +44,11 @@ export function Pokedex() {
             <Container>
                 <Body>
                     <Row>
-                        <Title>Mais de 250 Pokemons para você escolher o seu favorito</Title>
+                        <Title>Mais de 100 Pokemons para você escolher o seu favorito</Title>
                     </Row>
 
                     <Row>
-                        <Search />
+                        <Search getPokemon={getPokemon} />
                     </Row>
 
                     <Label>
@@ -60,13 +73,9 @@ export function Pokedex() {
                     <Box mt={5} mb={2}>
                         <Grid container spacing={2}>
                             {pokemons.map((pokemon) => (
-                                <>
-                                    <Grid item xs={5} sm={4} md={3} lg={2} >
-                                        <Cards 
-                                            pokemon={pokemon} 
-                                        />
-                                    </Grid>
-                                </>
+                                <Grid key={pokemon.id} item xs={5} sm={4} md={3} lg={2} >
+                                    <Cards pokemon={pokemon} />
+                                </Grid>
                             ))}
                         </Grid>
                     </Box>

@@ -10,7 +10,7 @@ interface IListPokemons {
 }
 
 export async function ListAllPokemons(): Promise<IListPokemons> {
-    const endpoint = `https://pokeapi.co/api/v2/pokemon?limit=100&offset=0`;
+    const endpoint = `https://pokeapi.co/api/v2/pokemon?limit=120&offset=0`;
 
     const response = await axios.get<IListPokemons>(endpoint);
 

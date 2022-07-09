@@ -10,6 +10,7 @@ export const Card = styled.section`
     cursor: pointer;
     color: #fff;
     font-family: 'Inter';
+    background: ${props => props.color}
 `
 
 export const Header = styled.div`

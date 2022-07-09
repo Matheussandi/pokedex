@@ -5,7 +5,12 @@ import { Row, Col } from 'react-awesome-styled-grid';
 
 import Banner from "../../images/BannerComplete.svg"
 
-import { Container, Button, SubTitle, Title } from "./styles";
+import {
+    Container,
+    Button,
+    Title,
+    SubTitle,
+} from "./styles";
 
 export function Home() {
     const navigate = useNavigate();
@@ -28,8 +33,7 @@ export function Home() {
                         </Button>
                     </Col>
                     <Col md={5}>
-                        <img 
-                        src={Banner} alt="banner" />
+                        <img src={Banner} alt="banner" />
                     </Col>
                 </Row>
             </Container>

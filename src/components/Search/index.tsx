@@ -8,9 +8,6 @@ export function Search(props: any) {
 
     function PokemonLowerCase() {
         const name = search.toLocaleLowerCase();
-        
-        // fazer o filtro para pegar somente os pokemons iguais
-
         return name;
     }
 
@@ -21,11 +18,10 @@ export function Search(props: any) {
                     id="find-pokemon"
                     type="text"
                     placeholder="Pesquisar pokemon"
-                    onChange={(e) => setSearch(e.target.value)}  
+                    onChange={(e) => setSearch(e.target.value)}
+                    maxLength={20}
                 >
                 </Input>
-
-                <h1>{search}</h1>
 
                 <button onClick={(e) => props.getPokemon(PokemonLowerCase())}>
                     <img src={lupa} alt="lupa" />

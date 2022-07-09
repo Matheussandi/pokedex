@@ -21,9 +21,6 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .style, .dark, .rock {
-      /* background-color: #a1a1a1; */
-      /* background: linear-gradient(8.46deg, #676767 -0.58%, #a1a1a1 108.38%); */
-
       background: #898889;
 
       h4 {
@@ -37,7 +34,6 @@ export const GlobalStyle = createGlobalStyle`
 
     .grass, .bug {
         background: #49d0b1;
-        /* background: linear-gradient(8.46deg, #46A487 -0.58%, #46D7AB 108.38%); */
 
         h4 {
           background-color: #5cdfc7;
@@ -49,8 +45,6 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .ice, .water {
-      /* background: #A2CFF0; */
-      /* background: linear-gradient(8.46deg, #4676A4 -0.58%, #46C5D7 108.38%); */
       background: #76bdfe;
 
       h4 {
@@ -63,9 +57,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .fire, .fighting, .dragon {
-      /* background: #f76545; */
       background: #FB6C6C;
-      /* background: linear-gradient(8.46deg, #d45c5e -0.58%, #FB6C6C 108.38%); */
 
       h4 {
           background-color: #fc8584;
@@ -77,9 +69,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .normal, .gosth {
-      /* background-color: #76AADB; */
       background: #F2CDD6;
-      /* background: linear-gradient(8.46deg, #cdafb6 -0.58%, #f2cdd6 108.38%); */
 
       h4 {
         background-color: #f7dce5;
@@ -91,8 +81,6 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .poison, .psychic, .fairy, .ghost {
-      /* background-color: #A974BC; */
-      /* background: linear-gradient(8.46deg, #6c4979 -0.58%, #A974BC 108.38%); */
       background: #a499c1;
 
       h4 {
@@ -105,9 +93,6 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .ground {
-      /* background-color: #9b897b; */
-      /* background: linear-gradient(8.46deg, #716459 -0.58%, #baa392 108.38%); */
-
       background: #9d8979;
 
       h4 {
@@ -120,10 +105,6 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .electric {
-      /* background-color: #F7C545; */
-      /* background: #FFCE4B; */
-      /* background: linear-gradient(8.46deg, #d3ae4b -0.58%, #FFCE4B 108.38%); */
-
       background: #ffd76f;
 
       h4 {

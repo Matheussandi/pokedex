@@ -1,4 +1,4 @@
-import {  Center, Text, Button } from './styles';
+import { Center, Text, Button } from './styles';
 import teamrocket from '../../images/teamrocket.png';
 import { useNavigate } from 'react-router-dom';
 

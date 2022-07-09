@@ -5,7 +5,6 @@ export const Container = styled.main`
     max-width: 1120px;
     margin: 0 auto;
     padding: 2.5rem 1rem;
-    margin-top: 67px,
 `
 
 export const Title = styled.h1`
@@ -30,7 +29,6 @@ export const SubTitle = styled.h2`
     font-size: 16px;
     line-height: 36px;
     color: var(--text-body);
-
 
     letter-spacing: 0.02em;
 `

@@ -6,7 +6,6 @@ import { Container } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { ListOnePokemon } from '../../services/ListOnePokemon'
-
 import { ListAboutPokemon } from '../../services/ListAboutPokemon'
 
 import {
@@ -111,10 +110,10 @@ export function SelectedPokemonDetails() {
                                 </IconName>
                             </Icon>
 
-                            <Icon style={{ border: 'none'}}>
+                            <Icon style={{ border: 'none' }}>
                                 <img src={powerPokemon} alt="heightPokemon" />
                                 {/* Essa busca não é do poder principal, pois não identifiquei na API */}
-                                {selectedPokemonDetails?.abilities.find(abilities =>abilities.ability)?.ability.name}
+                                {selectedPokemonDetails?.abilities.find(abilities => abilities.ability)?.ability.name}
                                 <IconName>
                                     Poder Principal
                                 </IconName>
@@ -143,17 +142,17 @@ export function SelectedPokemonDetails() {
                         </Stats>
 
                         <NumberPorcentage>
-                            {selectedPokemonDetails?.stats.map((type) => 
+                            {selectedPokemonDetails?.stats.map((type) =>
                                 <TextStats key={type.stat.name}>
                                     {type.base_stat}
                                 </TextStats>)}
                         </NumberPorcentage>
 
                         <Porcentage>
-                            {selectedPokemonDetails?.stats.map((type) => 
-                                <progress 
+                            {selectedPokemonDetails?.stats.map((type) =>
+                                <progress
                                     key={type.stat.name}
-                                    value={type.base_stat} 
+                                    value={type.base_stat}
                                     max="100"
                                 ></progress>)}
                         </Porcentage>
