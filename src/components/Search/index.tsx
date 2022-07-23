@@ -1,31 +1,26 @@
-import { useState } from "react";
-
 import { Container, Input } from "./styles";
 import lupa from '../../images/lupa.svg';
 
-export function Search(props: any) {
-    const [search, setSearch] = useState('');
+interface InputSearchProps {
+    value: string;
+    onChange(value: string): void;
+  }
 
-    function PokemonLowerCase() {
-        const name = search.toLocaleLowerCase();
-        return name;
-    }
-
+export function Search({value, onChange}: InputSearchProps) {
     return (
         <>
             <Container>
                 <Input
                     id="find-pokemon"
                     type="text"
+                    value={value}
                     placeholder="Pesquisar pokemon"
-                    onChange={(e) => setSearch(e.target.value)}
+                    onChange={e => onChange(e.target.value)}
                     maxLength={20}
                 >
                 </Input>
 
-                <button onClick={(e) => props.getPokemon(PokemonLowerCase())}>
-                    <img src={lupa} alt="lupa" />
-                </button>
+                <img src={lupa} alt="lupa" />
             </Container>
         </>
     )

@@ -50,3 +50,17 @@ export const Label = styled.label`
         }
     }
 `
+
+export const ButtonMore = styled.button`
+    margin: 2% 45%;
+    padding: 0.7rem 0.2rem 0.5rem 0.2rem;
+    cursor: pointer;
+
+    border: none;
+    background-color: #48D0B0;
+    border-radius: 3px;
+
+    @media (max-width: 600px) {
+            margin: 1% 50% 1% 35%;
+        }
+`

@@ -5,7 +5,7 @@ declare module 'styled-components' {
     title: string;
 
     colors: {
-      type: {
+      backgroundCard: {
         bug: string;
         dark: string;
         dragon: string;

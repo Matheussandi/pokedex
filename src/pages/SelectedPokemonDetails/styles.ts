@@ -1,20 +1,24 @@
 import styled from "styled-components";
 
+interface ElementColorProps {
+    color: string;
+  }
 
-export const ContainerCard = styled.div`
+export const ContainerCard = styled.div<ElementColorProps>`
     height: 100vh;
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: #f5f1ff;
+    background: ${props => props.color};
 `
 
 export const CardClass = styled.div`
     width: 30rem;
     min-height: 30rem;
     height: max-content;
-    background-color: var(--background);
+    background: #fff;
     display: flex;
     flex-direction: column;
     color: var(--body);
@@ -86,7 +90,6 @@ export const Features = styled.div`
     font-weight: 500;
     font-size: 14px;
     line-height: 16px;
-    margin-bottom: 20px;
 
     img {
         width: 16px;
@@ -99,6 +102,10 @@ export const Icon = styled.div`
     padding: 0 30px;
 
     border-right: 1px solid #E0E0E0;
+
+    @media screen and (max-width: 600px) {
+        padding: 0 5px;
+    }
 `
 
 export const IconName = styled.p`
@@ -110,71 +117,6 @@ export const IconName = styled.p`
 
     font-weight: 400;
     color: #767676;
-`
-
-export const Stats = styled.div`
-    display: inline-block;
-    margin: 0 5% 5% 5%;
-
-    @media screen and (max-width: 600px) {
-        font-size: small;
-        
-    }
-`
-export const TextStats = styled.div`
-    margin-top: 2px;
-
-    @media screen and (max-width: 600px) {
-        margin-top: 0;
-        font-size: 7.5px;
-    }
-`
-
-export const NumberPorcentage = styled.div`
-    display: flex;
-    flex-direction: column;
-    float: right;
-    margin: -3px 20px 0 20px;
-    
-    @media screen and (max-width: 600px) {
-        float: right;
-        margin: 0;
-        gap: -2px;
-    }
-`
-
-export const Porcentage = styled.div`
-    display: flex;
-    flex-direction: column;
-    float: right;
-
-    gap: 7px;
-    
-
-    progress {
-    display: block;
-    width: 10em;
-    height: 0.7em;
-    margin-top: 6px;
-    border-radius: 20px;
-    overflow: hidden;
-    border: none;
-    }
-
-    progress::-webkit-progress-value {
-        border-radius: 10px;
-    }
-    progress::-webkit-progress-bar {
-        background-color: #fff; width: 100%;
-    }
-
-    @media screen and (max-width: 600px) {
-        width: 11em;
-        height: 4em;
-        gap: 0;
-
-        margin-top: -5px;
-    }
 `
 
 export const Back = styled.button`

@@ -1,12 +1,18 @@
 import { useEffect, useState } from 'react';
-import { PokemonDetail, PokemonsSpecies } from '../../interfaces/PokemonDetail';
-
-import { Container } from '@mui/material';
-
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { ListOnePokemon } from '../../services/ListOnePokemon'
-import { ListAboutPokemon } from '../../services/ListAboutPokemon'
+import defaultTheme from '../../styles/theme';
+import { Container } from '@mui/material';
+
+import weightPokemon from '../../images/weightPokemon.svg';
+import heightPokemon from '../../images/heightPokemon.svg';
+import powerPokemon from '../../images/power.svg';
+import back from "../../images/back-arrow.svg";
+
+import pokemonTypes from '../../assets/types'
+import api from '../../services/api';
+
+import { Stats } from './Stats'
 
 import {
     CardClass,
@@ -17,36 +23,133 @@ import {
     SubTitle,
     Features,
     Icon,
-    Stats,
-    TextStats,
-    Porcentage,
     IconName,
-    NumberPorcentage,
     Back
 } from './styles';
 
-import weightPokemon from '../../images/weightPokemon.svg';
-import heightPokemon from '../../images/heightPokemon.svg';
-import powerPokemon from '../../images/power.svg';
-import back from "../../images/back-arrow.svg";
+export interface PokemonTypesProps {
+    name?: string;
+}
+
+export interface PokemonProps {
+    id: number;
+    number: string;
+    backgroundColor: string;
+    image: string;
+    specie: string;
+    height: string;
+    weight: string;
+    stats: {
+        hp: number;
+        attack: number;
+        defense: number;
+        speed: number;
+        specialAttack: number;
+        specialDefense: number;
+    };
+    abilities: PokemonsAbilities[];
+    type: PokemonTypesProps[];
+}
+
+interface TypePokemonResponse {
+    type: {
+        name: keyof typeof pokemonTypes;
+    };
+}
+
+export interface PokemonsSpecies {
+    flavor_text_entries: FlavorTextEntry[];
+}
+
+export interface FlavorTextEntry {
+    flavor_text: string;
+    language: {
+        name: string;
+        url: string;
+    };
+    version: string;
+}
+
+export interface PokemonsAbilities {
+    ability: {
+        name: string;
+        url: string;
+    }
+}
 
 export function SelectedPokemonDetails() {
-    const [selectedPokemonDetails, setSelectedPokemonDetails] = useState<PokemonDetail | undefined>(undefined);
+    const [pokemon, setPokemon] = useState({} as PokemonProps);
     const [aboutPokemon, setAboutPokemon] = useState<PokemonsSpecies | undefined>(undefined);
-    const { name } = useParams();
+    const [backgroundColor, setBackgroundColor] = useState<
+        keyof typeof pokemonTypes
+    >('normal');
 
+    const { name } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!name) return;
+        api.get(`/pokemon/${name}`).then(response => {
+            const {
+                id,
+                weight,
+                height,
+                stats,
+                sprites,
+                abilities,
+                types,
+                species,
+            } = response.data;
 
-        ListOnePokemon(name)
-            .then((response) => setSelectedPokemonDetails(response))
+            setBackgroundColor(types[0].type.name);
 
-        ListAboutPokemon(name)
-            .then((response) => setAboutPokemon(response))
+            if (types[0].type.name === 'normal' && types.length > 1) {
+                setBackgroundColor(types[1].type.name);
+            }
 
-    }, [name]);
+            setPokemon({
+                id,
+                number: `#${'000'.substr(id.toString().length)}${id}`,
+                backgroundColor: defaultTheme.colors.backgroundCard[backgroundColor],
+                image:
+                    sprites.other['official-artwork'].front_default ||
+                    sprites.front_default,
+                weight: `${weight / 10} kg`,
+                specie: species.name,
+                height: `${height / 10} m`,
+                stats: {
+                    hp: stats[0].base_stat,
+                    attack: stats[1].base_stat,
+                    defense: stats[2].base_stat,
+                    specialAttack: stats[3].base_stat,
+                    specialDefense: stats[4].base_stat,
+                    speed: stats[5].base_stat,
+                },
+                abilities: abilities.map((pokemonAbilities: PokemonsAbilities) => ({
+                    name: pokemonAbilities.ability.name,
+                    url: pokemonAbilities.ability.url,
+                })),
+                type: types.map((pokemonType: TypePokemonResponse) => ({
+                    name: pokemonType.type.name,
+                })),
+            });
+        });
+    });
+
+    useEffect(() => {
+        api.get(`/pokemon-species/${name}/`).then(response => {
+            const {
+                flavor_text_entries,
+            } = response.data
+
+            setAboutPokemon({
+                flavor_text_entries: flavor_text_entries.map((pokemonSpecie: FlavorTextEntry) => ({
+                    flavor_text: pokemonSpecie.flavor_text,
+                    language: pokemonSpecie.language,
+                    version: pokemonSpecie.version,
+                }))
+            })
+        });
+    });
 
     return (
         <>
@@ -56,106 +159,56 @@ export function SelectedPokemonDetails() {
                 <img src={back} alt="Back" />
             </Back>
 
-            <ContainerCard
-                className={`${selectedPokemonDetails?.types[0].type.name}`}
-            >
+            <ContainerCard color={defaultTheme.colors.backgroundCard[backgroundColor]}>
                 <CardClass>
                     <Container maxWidth="lg">
                         <HeaderCard>
-                            {selectedPokemonDetails?.name}
+                            {name}
                             <IdCard>
-                                #{selectedPokemonDetails?.id.toString().padStart(3, '0')}
+                                {pokemon.number}
                             </IdCard>
                         </HeaderCard>
 
                         <ImageCard>
-                            <img width="50%" height="auto" src={selectedPokemonDetails?.sprites.front_default} alt="" />
+                            <img width="50%" src={pokemon.image} alt={`Imagem do pokémon ${name}`} />
                         </ImageCard>
 
                         <SubTitle>
-                            {aboutPokemon?.flavor_text_entries.find((test) => test.language.name === 'es')?.flavor_text}
+                            {aboutPokemon?.flavor_text_entries.find((test) => test.language.name === 'en')?.flavor_text.replace('\f', ' ')}
                         </SubTitle>
 
                         <Features>
                             <Icon>
                                 <img src={weightPokemon} alt="weightPokemon" />
-                                {selectedPokemonDetails?.weight.toString()
-                                    .slice(0, selectedPokemonDetails.weight.toString().length - 1)
-                                }
-                                .
-                                {selectedPokemonDetails?.weight.toString()
-                                    .slice(
-                                        selectedPokemonDetails.weight.toString().length - 1,
-                                        selectedPokemonDetails.weight.toString().length,
-                                    )}{' '}
-                                kg
+                                {pokemon.weight}
                                 <IconName>
                                     Peso
                                 </IconName>
                             </Icon>
                             <Icon>
                                 <img src={heightPokemon} alt="heightPokemon" />
-                                {selectedPokemonDetails?.height.toString()
-                                    .slice(0, selectedPokemonDetails?.height.toString().length - 1)
-                                }
-                                .
-                                {selectedPokemonDetails?.height.toString()
-                                    .slice(
-                                        selectedPokemonDetails.height.toString().length - 1,
-                                        selectedPokemonDetails.height.toString().length
-                                    )}{' '}
-                                m
+                                {pokemon.height}
                                 <IconName>
                                     Altura
                                 </IconName>
                             </Icon>
 
                             <Icon style={{ border: 'none' }}>
-                                <img src={powerPokemon} alt="heightPokemon" />
-                                {/* Essa busca não é do poder principal, pois não identifiquei na API */}
-                                {selectedPokemonDetails?.abilities.find(abilities => abilities.ability)?.ability.name}
+                                <img src={powerPokemon} alt="powerPokemon" />
+                                {pokemon.type && (
+                                    <div style={{ display: 'inline' }}>
+                                        {pokemon.type.map(pokemonType => pokemonType.name).shift()}
+                                    </div>
+                                )}
                                 <IconName>
-                                    Poder Principal
+                                    Tipo
                                 </IconName>
                             </Icon>
                         </Features>
 
-                        <Stats>
-                            <TextStats>
-                                Hp:
-                            </TextStats>
-                            <TextStats>
-                                Ataque:
-                            </TextStats>
-                            <TextStats>
-                                Defesa:
-                            </TextStats>
-                            <TextStats>
-                                Ataque especial:
-                            </TextStats>
-                            <TextStats>
-                                Defesa especial:
-                            </TextStats>
-                            <TextStats>
-                                Velocidade:
-                            </TextStats>
-                        </Stats>
-
-                        <NumberPorcentage>
-                            {selectedPokemonDetails?.stats.map((type) =>
-                                <TextStats key={type.stat.name}>
-                                    {type.base_stat}
-                                </TextStats>)}
-                        </NumberPorcentage>
-
-                        <Porcentage>
-                            {selectedPokemonDetails?.stats.map((type) =>
-                                <progress
-                                    key={type.stat.name}
-                                    value={type.base_stat}
-                                    max="100"
-                                ></progress>)}
-                        </Porcentage>
+                        {pokemon.stats &&
+                            <Stats stats={pokemon.stats} color={defaultTheme.colors.backgroundCard[backgroundColor]} />
+                        }
                     </Container>
                 </CardClass>
             </ContainerCard>

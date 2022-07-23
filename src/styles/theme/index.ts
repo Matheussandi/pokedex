@@ -4,7 +4,7 @@ const defaultTheme: DefaultTheme = {
   title: 'default',
 
   colors: {
-    type: {
+    backgroundType: {
       bug: '#8CB230',
       dark: '#58575F',
       dragon: '#0F6AC0',
@@ -24,7 +24,7 @@ const defaultTheme: DefaultTheme = {
       steel: '#417D9A',
       water: '#4A90DA',
     },
-    backgroundType: {
+    backgroundCard: {
       bug: '#8BD674',
       dark: '#6F6E78',
       dragon: '#7383B9',

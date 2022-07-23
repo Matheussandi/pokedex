@@ -53,17 +53,7 @@ export function Header() {
                                             Pokemons
                                         </NavLink>
                                     </li>
-                                    <li>
-                                        <NavLink
-                                            to="/contact"
-                                            style={({ isActive }) => ({
-                                                borderBottom: isActive ? '3px solid #212121' : '#fff',
-                                                fontWeight: isActive ? '700' : '400'
-                                            })}
-                                        >
-                                            Contato
-                                        </NavLink>
-                                    </li>
+
                                 </ul>
                             </Menu>
                         </Col>

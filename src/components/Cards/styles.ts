@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Card = styled.section`
+interface BoxProps {
+  color: string;
+}
+
+export const Card = styled.section<BoxProps>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,9 +12,10 @@ export const Card = styled.section`
     padding: 1em;
     border-radius: 0.5em;
     cursor: pointer;
-    color: #fff;
+    color: #000;
     font-family: 'Inter';
-    background: ${props => props.color}
+    background: ${props => props.color};
+    color: white;
 `
 
 export const Header = styled.div`
@@ -47,23 +52,24 @@ export const Canto = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    margin-right: 0.8rem;
     position: relative;
     font-weight: 500;
-    margin-right: 1.5rem;
-    /* right: -15%; */
     color: #000;
     opacity: 0.5;
+
+    @media (max-width: 600px) {
+        margin-right: 1.5rem;   
+    }
 `
 
-export const TypesSpan = styled.h4`
+export const TypesSpan = styled.div<BoxProps>`
     margin-top: 6px;
     text-align: center;
     font-size: small;
     font-weight: 500;
-    /* box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.18); */
     padding: 6px 5px;
-    /* background: #000; */
-    /* background-blend-mode: soft-light; */
-    /* background-color: #5cdfc7; */
+    background-color: #fff;
     border-radius: 38px;
+    background: ${props => props.color}
 `

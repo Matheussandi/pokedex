@@ -42,33 +42,3 @@ export const Input = styled.input`
     }
 
 `
-
-export const Label = styled.label`
-    margin-top: 51px;
-
-    select {
-        font-family: 'Open Sans';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 22px;
-
-        background: var(--background);
-
-        box-shadow: 2px 2px 2px rgba(33, 33, 33, 0.1);
-        border-radius: 4px;
-        border: none;
-
-        margin-right: 64px;
-        padding: 0 40px;
-
-        @media (max-width: 768px) {
-            margin-right: 30px;
-            margin-bottom: 10px;
-        }
-
-        @media (max-width: 600px) {
-            padding: 0 2px;
-        }
-    }
-`
