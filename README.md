@@ -45,15 +45,15 @@ Esta aplicação web tem o intuito de listar e detalhar um pouco mais sobre o po
 
 Faça um clone e acesse o diretório:
 ```
-$ git clone git@github.com:Matheussandi/Pokedex.git && cd Pokedex
+git clone git@github.com:Matheussandi/Pokedex.git && cd Pokedex
 ```
 
 Instala as dependências:
 ```
-$ yarn
+yarn
 ```
 
 Executa:
 ```
-$ yarn start
+yarn start
 ```
