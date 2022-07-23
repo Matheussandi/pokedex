@@ -1,46 +1,59 @@
-# Getting Started with Create React App
+<p align="center">
+  <img width="300" src="https://user-images.githubusercontent.com/29473781/180619084-a56960ab-7efa-4e34-9d33-4e3e581d62ff.png" />
+  
+  <video src='https://user-images.githubusercontent.com/29473781/180622914-11e42c5a-6d48-40f6-8ca5-71f0de600fb8.mp4' />
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# :computer: Projeto
+Esta aplicação web tem o intuito de listar e detalhar um pouco mais sobre o pokemon selecionado. Toda essa construção visual só foi possível graças ao [layout](https://www.figma.com/file/XzpoBF2xUaZPJm4C8Di1qC/Prova-de-Teste) proposto e as informções detalhadas dos pokemons foi devido ao uso da API REST [PokéApi](https://pokeapi.co/).
 
-## Available Scripts
+# :pushpin: Recursos
 
-In the project directory, you can run:
+:heavy_check_mark: Listagem de pokemons;
 
-### `yarn start`
+:heavy_check_mark: Filtro de pokemon pelo nome;
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+:heavy_check_mark: Reponsividade;
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+:heavy_check_mark: Detalhes do pokemon selecionado;
 
-### `yarn test`
+:heavy_check_mark: Carregamento por lista.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# :technologist: Tecnologias
+ 
+- [Axios](https://axios-http.com/ptbr/docs/intro)
 
-### `yarn build`
+- [Material-UI](https://mui.com/)
+ 
+- [React](https://pt-br.reactjs.org/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [React Router](https://reactrouter.com/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [React-icons](https://react-icons.github.io/react-icons/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [Styled-components](https://styled-components.com/)
+ 
+- [Typescript](https://www.typescriptlang.org/)
 
-### `yarn eject`
+# :warning: Alertas
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* Algumas informações estão em inglês, por exemplo sobre o pokemon, porque a api ainda não disponibilizou a linguagem pt-BR de forma oficial, dessa forma optei por colocar algumas informações em inglês.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Listagem dos pokémons está limitada até 700 pokemons, mas pode ser alterada dentro do código.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# :inbox_tray: Instalação e execução
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Faça um clone e acesse o diretório:
+```
+$ git clone git@github.com:Matheussandi/Pokedex.git && cd Pokedex
+```
 
-## Learn More
+Instala as dependências:
+```
+$ yarn
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Executa:
+```
+$ yarn start
+```
