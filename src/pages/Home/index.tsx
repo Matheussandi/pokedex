@@ -26,7 +26,7 @@ export function Home() {
                             Qual pokemon você <strong>escolheria</strong>?
                         </Title>
                         <SubTitle>
-                            Você pode ser o tipo de Pokémon, seus pontos fortes, fracos e habilidades.
+                            Você pode saber o tipo de Pokémon, seus pontos fortes, fracos e habilidades.
                         </SubTitle>
                         <Button onClick={() => navigate('/pokemons')}>
                             Veja os pokemons
